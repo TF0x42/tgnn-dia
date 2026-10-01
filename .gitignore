@@ -1,0 +1,4 @@
+# per-candidate score dumps are distributed as release assets, not in git
+scores/*.tar
+scores/*.npz
+__pycache__/
