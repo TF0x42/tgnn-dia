@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Table VII of the paper: parameter-free score ensembles vs the learned gate.
+"""Table VIII of the paper: parameter-free score ensembles vs the learned gate.
 
 Needs the per-candidate score files (see ../scores/README.md): for each
 dataset, model and seed, an npz with the positive score and the 99 negative

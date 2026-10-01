@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Tables II-IV of the paper: separating architecture from initialisation.
 
-Table II  disagreement |S_a xor S_b|/|A| between architectures (fixed seed)
+Table III  disagreement |S_a xor S_b|/|A| between architectures (fixed seed)
           vs between seeds (fixed architecture), novel edges
-Table III per-edge oracle over the best three different architectures
+Table IV per-edge oracle over the best three different architectures
           (same seed) vs over three seeds of the best single architecture
-Table IV  largest set one architecture solves at all three seeds while
+Table V  largest set one architecture solves at all three seeds while
           another misses at all three
 """
 import itertools
@@ -22,12 +22,12 @@ print(f"{'dataset':10s} {'between-arch%':>14} {'between-seed%':>14} "
 for ds in DATASETS:
     tab = load(ds); nov = novel(tab)
     S = solved_sets(tab, mask=nov)
-    # Table II
+    # Table III
     arch = [np.mean(S[a, s] ^ S[b, s]) for s in SEEDS
             for a, b in itertools.combinations(MODELS, 2)]
     seed = [np.mean(S[m, s1] ^ S[m, s2]) for m in MODELS
             for s1, s2 in itertools.combinations(SEEDS, 2)]
-    # Table III: both columns are the best over their choices of a per-edge
+    # Table IV: both columns are the best over their choices of a per-edge
     # oracle across three runs (three seeds of one model vs three architectures
     # at one seed, averaged over seeds)
     seed_oracle = max(np.logical_or.reduce([S[m, s] for s in SEEDS]).mean()
@@ -40,7 +40,7 @@ for ds in DATASETS:
     best_trio = max(trios, key=trios.get)
     arch_oracle = trios[best_trio]
     dropped = (set(MODELS) - set(best_trio)).pop()
-    # Table IV
+    # Table V
     stable = 0
     for a, b in itertools.permutations(MODELS, 2):
         owned = np.logical_and.reduce([S[a, s] & ~S[b, s] for s in SEEDS])

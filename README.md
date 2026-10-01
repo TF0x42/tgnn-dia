@@ -91,19 +91,20 @@ verify you reproduce the paper exactly.
 | Paper | Script | What it computes | Spot check |
 |---|---|---|---|
 | Table I | – | the descriptor definitions; each descriptor is a corpus column | – |
+| Table II | – | dataset statistics: node and edge counts from the public dataset files, test-edge counts and novel share from the corpus (`is_repeated == 0`) | UNtrade 2.6% novel, MOOC 79.6% |
 | Fig. 2A/B | `complementarity.py` | all-correct / contested / none fractions, best single vs best-of-4 oracle, oracle gain, drop-weakest control | CanParl: 79.0% contested, gain +24.9, drop-weakest +24.3 |
 | Fig. 2C | `complementarity.py [dataset]` | pairwise coverage matrix (% of row's correct novel edges the column misses) | CanParl row TPNet: 32 / 64 / 27 |
-| Table II | `seed_control.py` | disagreement between architectures vs between seeds | CanParl: 44.9% vs 13.3% |
-| Table III | `seed_control.py` | 3-seed oracle of the best single architecture vs best three-architecture oracle (the trio is chosen by coverage, not individual accuracy: on UCI, USLegis and Enron it keeps TGN, the individually weakest model there) | CanParl: 0.838 vs 0.957 (+11.9) |
-| Table IV | `seed_control.py` | stable architecture-specific edges (solved at all seeds by one model, missed at all seeds by another) | CanParl 28.8%, MOOC 32.2% |
+| Table III | `seed_control.py` | disagreement between architectures vs between seeds | CanParl: 44.9% vs 13.3% |
+| Table IV | `seed_control.py` | 3-seed oracle of the best single architecture vs best three-architecture oracle (the trio is chosen by coverage, not individual accuracy: on UCI, USLegis and Enron it keeps TGN, the individually weakest model there) | CanParl: 0.838 vs 0.957 (+11.9) |
+| Table V | `seed_control.py` | stable architecture-specific edges (solved at all seeds by one model, missed at all seeds by another) | CanParl 28.8%, MOOC 32.2% |
 | Fig. 3 | `rankings.py` | novel-edge hit@10 per architecture and dataset, with EdgeBank | UNtrade: TPNet 0.355, DyGFormer 0.059 |
-| Table V | – | the architectural block inventory; the ablated blocks correspond to the ablation columns | – |
+| Table VI | – | the architectural block inventory; the ablated blocks correspond to the ablation columns | – |
 | Fig. 4A–C | `ablations.py` | within-model ablations: walk projections, co-occurrence, time encoders | Enron TPNet 0.623 vs no-walk 0.398; UCI DyGFormer 0.794 vs no-cooc 0.441 |
 | Fig. 4D | `ablations.py` | convergence: change in solved-set overlap (Jaccard) with each competitor | CanParl TPNet-nowalk vs GraphMixer: +0.239 |
 | (Sec. V) | `ablations.py` | descriptor-null check: no descriptor separates lost from retained edges consistently | max standardised gap 0.79, sign-flipping across datasets |
 | (Sec. IV) | `metric_sensitivity.py` | Section IV quantities and the Fig. 4 ablation comparisons recomputed at hit@5/10/20 | no subsumption at any cutoff; CanParl contested 84.1 / 79.0 / 62.2% at k=5/10/20, oracle gain positive everywhere |
-| Table VI | `router.py` | descriptor-based router (chronological half split) and pairwise ownership AUC | CanParl +37%, USLegis +54%; mean AUC 0.665, Enron 0.507 |
-| Table VII | `ensembles.py [scores_dir]` | mean / max / Borda score fusion vs the learned gate | CanParl: mean 0.820, gate 0.803; USLegis: rank 0.668 |
+| Table VII | `router.py` | descriptor-based router (chronological half split) and pairwise ownership AUC | CanParl +37%, USLegis +54%; mean AUC 0.665, Enron 0.507 |
+| Table VIII | `ensembles.py [scores_dir]` | mean / max / Borda score fusion vs the learned gate | CanParl: mean 0.820, gate 0.803; USLegis: rank 0.668 |
 | (Sec. VI-B) | `seed_ensemble.py [scores_dir]` | seed-ensemble control: fusing three seeds of one architecture, separating variance reduction from complementarity | USLegis: TPNet seed-rank 0.665 vs cross-architecture 0.668 |
 
 `ensembles.py` and `seed_ensemble.py` are the only scripts that need more than

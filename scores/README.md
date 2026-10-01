@@ -19,5 +19,5 @@ this directory:
 for f in scores_*.tar; do tar xf "$f"; done
 ```
 
-then run `paper/ensembles.py`. Only Table VII needs these files; every
+then run `paper/ensembles.py`. Only Table VIII needs these files; every
 other analysis runs from the corpus alone.

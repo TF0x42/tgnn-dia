@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Table VI of the paper plus the pairwise ownership probe.
+"""Table VII of the paper plus the pairwise ownership probe.
 
 Router: one random forest per architecture (200 trees, depth 6, min leaf 20)
 predicts from the descriptors whether that model solves a novel edge; each edge
